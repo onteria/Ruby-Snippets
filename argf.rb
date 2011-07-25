@@ -1,3 +1,6 @@
+# Get array of all command line arguments
+puts ARGF.argv.inspect
+
 # Get all lines of all files
 ARGF.each { | line |
   puts line
