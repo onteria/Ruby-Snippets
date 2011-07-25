@@ -7,13 +7,10 @@ ARGF.each { | line |
 }
 
 # Get all lines of all files, one by one using file handles
-puts ARGF.filename
-ARGF.file.each_line { |line|  
-  puts line
-}
-ARGF.close
-puts ARGF.filename
-ARGF.file.each_line { |line|
-  puts line
-}
-ARGF.close
+while !ARGF.file.closed?
+  puts "===== Current File: #{ARGF.filename} ====="
+  ARGF.file.each_line { |line|
+    puts line
+  }
+  ARGF.close
+end
