@@ -1,4 +1,4 @@
-word_frequency = File.new("alice_chapter_1.txt").each_line.reduce({}) { | frequency, line | 
+word_frequency = File.new("alice_chapter_1.txt").each_line.inject({}) { | frequency, line | 
   line.split(' ').each { | word |
     word = word.upcase[/(\A[a-zA-Z][a-zA-Z\-']*)[^a-zA-Z]?\z/, 1]
     frequency[word] = ((frequency[word].nil?) ? 0 : frequency[word] + 1) unless word.nil?
@@ -10,7 +10,7 @@ word_frequency.sort {|a,b| b[1] <=> a[1]}.each { | frequency |
   puts "#{frequency[0]} #{frequency[1]}"
 }
 
-highest_frequency = word_frequency.reduce { | highest, current | 
+highest_frequency = word_frequency.inject { | highest, current | 
   (current[1] > highest[1]) ? current : highest
 }
 
